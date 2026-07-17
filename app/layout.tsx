@@ -26,6 +26,7 @@ export const metadata: Metadata = {
   keywords: ["SHUNEI LAB", "駿英ラボ", "AI開発", "Webアプリ開発", "iPhoneアプリ開発", "業務効率化", "ホームページ制作"],
   authors: [{ name: "SHUNEI LAB" }],
   creator: "SHUNEI LAB",
+  verification: { google: "bTsp_T8y2WjxwLerajOxWB4aQaqSHYz9CQiOwj4upqk" },
   robots: { index: true, follow: true, googleBot: { index: true, follow: true } },
   alternates: { canonical: "/shunei-lab-portfolio/" },
   openGraph: { title, description, type: "website", locale: "ja_JP", siteName: "SHUNEI LAB", images: [{ url: "/shunei-lab-portfolio/og.png", width: 1200, height: 630, alt: "SHUNEI LAB — 技術を、使われる価値へ。" }] },
