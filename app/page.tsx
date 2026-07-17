@@ -5,7 +5,7 @@ const Arrow = () => <span aria-hidden="true">↗</span>;
 function Brand({ compact = false }: { compact?: boolean }) {
   return (
     <a className={`brand ${compact ? "brand--compact" : ""}`} href="#top" aria-label="SHUNEI LAB トップへ">
-      <span className="brand-mark" aria-hidden="true"><i /><b /></span>
+      <span className="brand-mark" aria-hidden="true"><b>SL</b><i /></span>
       <span className="brand-copy">
         <strong>SHUNEI LAB</strong>
         {!compact && <small>駿英ラボ</small>}
@@ -92,9 +92,21 @@ export default function Home() {
               <article className={`project project--${index + 1}`} key={project.title}>
                 <div className="project-visual">
                   <span className="project-number">0{index + 1}</span>
-                  <div className="project-ui" aria-hidden="true">
-                    <i /><i /><i /><b>{project.monogram}</b>
-                  </div>
+                  {index === 0 ? (
+                    <div className="project-showcase" aria-label="琉生くんのぼうけん アプリ画面">
+                      <span className="project-live">LIVE iOS PRODUCT</span>
+                      <figure className="phone-shot phone-shot--back">
+                        <img src="./work/rui/rui-adventure.jpg" alt="琉生くんのぼうけん ブラキオサウルスのプレイ画面" width="739" height="1600" loading="lazy" />
+                      </figure>
+                      <figure className="phone-shot phone-shot--front">
+                        <img src="./work/rui/touch-dino.jpg" alt="琉生くんのぼうけん ティラノサウルスのプレイ画面" width="739" height="1600" loading="lazy" />
+                      </figure>
+                    </div>
+                  ) : (
+                    <div className="project-ui" aria-hidden="true">
+                      <i /><i /><i /><b>{project.monogram}</b>
+                    </div>
+                  )}
                 </div>
                 <div className="project-info">
                   <div><span>{project.type}</span><span>{project.year}</span></div>
