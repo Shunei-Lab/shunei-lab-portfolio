@@ -1,60 +1,94 @@
-export const principles = [
-  { title: "現場から考える", text: "使う人の行動と業務の流れを理解し、必要な機能を見極めます。" },
-  { title: "一貫してつくる", text: "企画・デザイン・開発を分断せず、体験全体を設計します。" },
-  { title: "育つ仕組みにする", text: "公開して終わりではなく、追加・改善しやすい土台を残します。" },
+export type Project = {
+  title: string;
+  label: string;
+  year: string;
+  summary: string;
+  challenge: string;
+  solution: string;
+  outcome: string;
+  role: string;
+  period: string;
+  technologies: string[];
+  href?: string;
+  linkLabel?: string;
+};
+
+export const proofPoints = [
+  { value: "8店舗", label: "現場マネジメントの視点" },
+  { value: "0→公開", label: "企画・設計・実装を一貫" },
+  { value: "AI / Web / iOS", label: "目的に合わせた技術選定" },
 ];
 
-export const projects = [
+export const projects: Project[] = [
   {
     title: "琉生くんのぼうけん",
-    type: "iPhone App / Support",
+    label: "iPhone app / Case study 01",
     year: "2026",
-    monogram: "R",
-    description: "子どもの好奇心を育てるiPhoneアプリと、App Store公開に必要なサポートサイトを設計・制作。",
-    tags: ["iOS", "UI Design", "Web"],
+    summary: "子どもが説明を読まなくても遊べる、親子向けのやさしい恐竜アプリ。",
+    challenge: "小さな子どもでも迷わず操作でき、短い時間で何度も楽しめる体験をつくること。",
+    solution: "タップだけの操作、明確な反応、4種類の恐竜、音と動きを組み合わせ、説明に頼らないUIを設計しました。",
+    outcome: "iPhoneアプリ本体に加え、App Store掲載素材と公開用サポートサイトまで一貫して制作しました。",
+    role: "企画 / UI設計 / SwiftUI実装 / 公開支援",
+    period: "個人開発・継続改善中",
+    technologies: ["SwiftUI", "iOS", "Interaction Design", "App Store"],
     href: "https://shunei-lab.github.io/codex-demo-site/",
-    status: "",
+    linkLabel: "サポートサイトを見る",
   },
   {
     title: "店舗業務ボード",
-    type: "Operations / Web App",
+    label: "Operations tool / Case study 02",
     year: "2026",
-    monogram: "8",
-    description: "8店舗の突発業務を一画面で把握。発信・完了報告・未完了確認をシンプルにする業務Webアプリ。",
-    tags: ["Web App", "PWA", "Operations"],
-    href: "",
-    status: "Prototype",
-  },
-  {
-    title: "Next experiment",
-    type: "AI Product / In progress",
-    year: "NEXT",
-    monogram: "+",
-    description: "AIを実務の流れに自然に組み込み、日々の判断と作業を軽くする次のプロダクトを開発中。",
-    tags: ["AI", "Automation", "Product"],
-    href: "",
-    status: "Coming soon",
+    summary: "複数店舗の突発業務を、発信から完了確認まで一画面で追える業務ツール。",
+    challenge: "電話や個別連絡に分散する依頼をまとめ、どの店舗が未完了かをすぐ判断できる状態にすること。",
+    solution: "8店舗の状態、担当、期限、完了報告を一つの流れに統合。現場が覚える操作を最小限にしました。",
+    outcome: "運営経験から要件を整理し、現場導入を想定したプロトタイプとして設計・検証しています。",
+    role: "課題定義 / 情報設計 / UI設計 / Web実装",
+    period: "Prototype",
+    technologies: ["Next.js", "TypeScript", "PWA", "Operations"],
   },
 ];
 
 export const services = [
-  { title: "AI開発", en: "AI DEVELOPMENT", description: "生成AIを活用したツール、社内アシスタント、既存業務へのAI導入を設計・開発します。" },
-  { title: "Webアプリ開発", en: "WEB APPLICATION", description: "管理画面、予約・顧客管理、社内ツールなど、業務に合わせたWebアプリを制作します。" },
-  { title: "iPhoneアプリ開発", en: "iOS APPLICATION", description: "アイデア整理からUI設計、実装、App Store公開まで一貫してサポートします。" },
-  { title: "業務効率化システム", en: "BUSINESS AUTOMATION", description: "手作業・転記・進捗確認を減らし、現場が無理なく使い続けられる仕組みをつくります。" },
-  { title: "ホームページ制作", en: "WEBSITE DESIGN", description: "ブランドの価値を伝え、問い合わせや採用につながる高速で美しいWebサイトを制作します。" },
+  {
+    number: "01",
+    title: "AI・業務効率化",
+    lead: "人が判断すべき仕事に、時間を戻す。",
+    description: "生成AI、定型処理、自動集計を既存業務へ無理なく組み込みます。まず業務の流れを整理し、効果が見える小さな範囲から始めます。",
+    deliverables: ["業務整理", "AIツール", "自動化フロー", "管理画面"],
+  },
+  {
+    number: "02",
+    title: "Webアプリ・業務システム",
+    lead: "複雑な業務を、迷わない画面へ。",
+    description: "予約、進捗、顧客、店舗運営など、現場固有のルールに合わせて設計します。使われ続けることを最優先に、更新しやすい土台までつくります。",
+    deliverables: ["要件定義", "UI/UX", "Web開発", "運用改善"],
+  },
+  {
+    number: "03",
+    title: "iPhoneアプリ",
+    lead: "アイデアを、手の中で使える体験に。",
+    description: "企画整理、画面設計、SwiftUI実装、App Store公開準備まで一貫対応。初めてのアプリ開発でも、必要な判断を整理しながら進めます。",
+    deliverables: ["プロトタイプ", "SwiftUI", "ストア素材", "公開支援"],
+  },
+  {
+    number: "04",
+    title: "Webサイト・ブランド",
+    lead: "見た目を整えるだけでなく、選ばれる理由を設計する。",
+    description: "事業の強みを言葉と構成から整理し、問い合わせや採用につながる高速なWebサイトを制作します。公開後の更新性と検索性も設計に含めます。",
+    deliverables: ["情報設計", "コピー", "デザイン", "SEO"],
+  },
 ];
 
 export const processSteps = [
-  { title: "Discover", text: "目的・課題・利用者を整理し、つくるべき価値を定義します。" },
-  { title: "Design", text: "情報設計とプロトタイプで、使い方と見え方を具体化します。" },
-  { title: "Build", text: "速度・安全性・更新性を意識し、実際に使える形へ実装します。" },
-  { title: "Grow", text: "公開後の反応を見ながら、機能追加と改善を継続します。" },
+  { number: "01", title: "目的を定める", text: "課題・利用者・成功条件を整理し、つくる理由を共有します。", output: "課題整理 / 優先順位" },
+  { number: "02", title: "小さく確かめる", text: "画面と操作を早く可視化し、認識のズレと不要な開発を減らします。", output: "構成案 / プロトタイプ" },
+  { number: "03", title: "使える形にする", text: "保守性、速度、アクセシビリティを含めて本番品質へ実装します。", output: "実装 / テスト / 公開" },
+  { number: "04", title: "育てる", text: "利用状況と反応を見ながら、効果の高い改善を積み重ねます。", output: "改善案 / 機能追加" },
 ];
 
 export const faqs = [
-  { q: "まだアイデアが曖昧でも相談できますか？", a: "はい。課題や実現したい状態を伺い、優先順位と最初につくる範囲から一緒に整理します。" },
-  { q: "小規模な改善や試作だけでも依頼できますか？", a: "可能です。まず小さく試し、効果を確認しながら段階的に育てる進め方を推奨しています。" },
-  { q: "公開後の修正や機能追加もお願いできますか？", a: "対応します。更新しやすい構成で制作し、公開後の改善や実績追加も継続して担当します。" },
-  { q: "相談時に何を準備すればよいですか？", a: "解決したい課題、利用する方、希望時期が分かれば十分です。仕様書がなくても問題ありません。" },
+  { q: "仕様書がなくても相談できますか？", a: "はい。解決したい課題、使う人、希望時期の3点が分かれば十分です。最初に目的と優先順位から整理します。" },
+  { q: "小さな試作や既存サイトの改善も依頼できますか？", a: "対応できます。全面開発だけでなく、検証用プロトタイプ、UI改善、部分的な業務自動化から始める進め方も歓迎です。" },
+  { q: "どこまで担当できますか？", a: "課題整理、情報設計、UI/UX、フロントエンド実装、公開、公開後の改善まで一貫して対応します。専門領域との連携が必要な場合も、必要な範囲を明確にします。" },
+  { q: "相談したらすぐ契約になりますか？", a: "いいえ。まず課題と実現可能性を確認し、進め方が合う場合に次の提案をします。相談段階で無理に依頼を勧めることはありません。" },
 ];

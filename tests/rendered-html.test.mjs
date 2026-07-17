@@ -8,15 +8,18 @@ const read = (path) => readFile(new URL(path, root), "utf8");
 test("exports the complete SHUNEI LAB sales site", async () => {
   const html = await read("out/index.html");
   assert.match(html, /<html lang="ja">/);
-  assert.match(html, /SHUNEI LAB（駿英ラボ）｜AI・Web・アプリ開発/);
-  assert.match(html, /技術を、/);
-  assert.match(html, /使われる価値/);
+  assert.match(html, /SHUNEI LAB（駿英ラボ）｜現場課題を解くAI・Web・iPhoneアプリ開発/);
+  assert.match(html, /現場の課題を、/);
+  assert.match(html, /動くプロダクト/);
   assert.match(html, /id="about"/);
   assert.match(html, /id="work"/);
   assert.match(html, /id="services"/);
   assert.match(html, /id="contact"/);
   assert.match(html, /琉生くんのぼうけん/);
   assert.match(html, /店舗業務ボード/);
+  assert.match(html, /課題/);
+  assert.match(html, /設計・工夫/);
+  assert.match(html, /成果/);
   assert.doesNotMatch(html, /Your site is taking shape|codex-preview|react-loading-skeleton/);
 });
 
@@ -36,5 +39,5 @@ test("exports SEO and social assets", async () => {
 test("uses the GitHub Pages base path for generated assets", async () => {
   const html = await read("out/index.html");
   assert.match(html, /\/shunei-lab-portfolio\/_next\/static\//);
-  assert.match(html, /\/shunei-lab-portfolio\/favicon\.svg/);
+  assert.match(html, /\/shunei-lab-portfolio\/favicon\.png/);
 });
