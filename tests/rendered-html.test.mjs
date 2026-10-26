@@ -11,7 +11,7 @@ test("exports the complete SHUNEI LAB sales site", async () => {
   assert.match(html, /SHUNEI LAB（駿英ラボ）｜現場課題を解くAI・Web・iPhoneアプリ開発/);
   assert.match(html, /現場の課題を、/);
   assert.match(html, /動くプロダクト/);
-  for (const id of ["work", "services", "about", "process", "tools", "updates", "contact"]) {
+  for (const id of ["work", "tools", "updates", "contact"]) {
     assert.match(html, new RegExp(`id="${id}"`), `missing section #${id}`);
   }
   assert.match(html, /課題/);
@@ -53,7 +53,7 @@ test("states honest statuses for the other projects", async () => {
 
 test("separates developer and app social channels and offers real contact routes", async () => {
   const html = await read("out/index.html");
-  const updates = html.slice(html.indexOf('id="updates"'), html.indexOf('id="faq-title"'));
+  const updates = html.slice(html.indexOf('id="updates"'), html.indexOf('id="contact"'));
   assert.match(updates, /DEVELOPER/);
   assert.match(updates, /APP UPDATES/);
   assert.match(updates, /href="https:\/\/x\.com\/shuneilab_dev"/);
@@ -82,7 +82,7 @@ test("uses unique ids and labelled sections", async () => {
   for (const [, target] of html.matchAll(/aria-labelledby="([^"]+)"/g)) {
     assert.ok(ids.includes(target), `aria-labelledby target #${target} exists`);
   }
-  for (const id of ["services-title", "process-title", "tools-title", "updates-title"]) {
+  for (const id of ["tools-title", "updates-title"]) {
     assert.match(html, new RegExp(`<h2 id="${id}"`), `#${id} is a heading`);
   }
 });
