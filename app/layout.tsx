@@ -15,7 +15,8 @@ const structuredData = {
   slogan: "現場の課題を、動くプロダクトへ。",
   description,
   areaServed: "JP",
-  sameAs: ["https://github.com/Shunei-Lab"],
+  email: "shunei.kanbara@gmail.com",
+  sameAs: ["https://github.com/Shunei-Lab", "https://x.com/shuneilab_dev"],
   knowsAbout: ["AI開発", "Webアプリ開発", "iPhoneアプリ開発", "UI/UXデザイン", "業務効率化システム", "ホームページ制作"],
   hasOfferCatalog: {
     "@type": "OfferCatalog",
