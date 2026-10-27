@@ -143,7 +143,7 @@ export const socialChannels = {
   app: {
     owner: "Tokimori",
     kind: "APP UPDATES",
-    description: "審査状況や公開のお知らせ、アップデート情報はアプリの公式アカウントで発信します。",
+    description: "公開のお知らせやアップデート情報は、アプリの公式アカウントで発信します。",
     links: [
       { service: "X", handle: "@tokimori_app", href: "https://x.com/tokimori_app" },
       { service: "TikTok", handle: "@tokimori5", href: "https://www.tiktok.com/@tokimori5" },
