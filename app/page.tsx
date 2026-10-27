@@ -105,14 +105,14 @@ export default function Home() {
           </div>
 
           <aside className="hero-now" aria-labelledby="now-title">
-            <div className="now-top"><h2 id="now-title">NOW</h2><span>2026.10.26 時点</span></div>
+            <div className="now-top"><h2 id="now-title">NOW</h2><span>2026.10.28 時点</span></div>
             <a className="now-feature" href="./tokimori/">
               <img src="./tokimori/assets/icon.png" alt="" width="64" height="64" />
               <span className="now-feature__text">
                 <strong>{featured.title}<small>{featured.kana}</small></strong>
                 <span>{featured.summary}</span>
               </span>
-              <span className="status-badge status-badge--review">{featured.status}</span>
+              <span className="status-badge status-badge--live">{featured.status}</span>
             </a>
             <ul className="now-list">
               {others.map(project => (
@@ -133,7 +133,7 @@ export default function Home() {
                   <div className="case-body">
                     <div className="case-meta"><span>{String(index + 1).padStart(2, "0")} / {project.category}</span><span>{project.year}</span></div>
                     <h3 id={`case-${project.slug}-title`}>{project.title}{project.kana && <small>{project.kana}</small>}</h3>
-                    <p className="case-status"><span className={`status-badge ${project.slug === "tokimori" ? "status-badge--review" : project.slug === "portfolio" ? "status-badge--live" : "status-badge--dev"}`}>{project.status}</span>{project.statusNote && <small>{project.statusNote}</small>}</p>
+                    <p className="case-status"><span className={`status-badge ${project.slug === "tokimori" ? "status-badge--live" : project.slug === "portfolio" ? "status-badge--live" : "status-badge--dev"}`}>{project.status}</span>{project.statusNote && <small>{project.statusNote}</small>}</p>
                     <p className="case-summary">{project.summary}</p>
                     <dl className="case-details">
                       <div><dt>課題</dt><dd>{project.challenge}</dd></div>

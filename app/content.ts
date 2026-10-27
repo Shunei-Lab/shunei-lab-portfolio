@@ -36,12 +36,12 @@ export const projects: Project[] = [
     kana: "トキモリ",
     category: "iPhone app",
     year: "2026",
-    status: "App Store審査中",
-    statusNote: "2026年10月26日時点",
+    status: "App Storeで公開中",
+    statusNote: "日本向け・バージョン1.0",
     summary: "最低限必要なアプリを残して、決めた時間だけスマホをロックするiPhoneアプリ。",
     challenge: "「少しだけ」のつもりで見続けてしまう時間に、自分で区切りをつくること。ただし連絡など本当に必要なアプリまで止めてしまうと、習慣として続きません。",
     solution: "制限中も使えるアプリを先に選び、「今から何分」か「何時まで」を決めて始める3ステップに絞りました。開始後はアプリ内から途中解除できない設計で、前回の設定は次回もそのまま使えます。",
-    current: "App Storeの審査中です。紹介ページ、料金設計、サポート・プライバシーページまで用意し、公開に向けて最終調整を進めています。",
+    current: "日本のApp Storeで公開中です。iOS 17以降のiPhoneに対応。無料で5回試せます。",
     role: "企画 / UI設計 / SwiftUI実装 / 紹介ページ制作",
     facts: [
       { label: "料金（日本）", value: "無料で5回 / 月額150円・年額1,500円" },
@@ -50,6 +50,7 @@ export const projects: Project[] = [
     technologies: ["SwiftUI", "Screen Time", "アプリ内課金", "iOS"],
     links: [
       { href: "./tokimori/", label: "Tokimoriの紹介ページを見る" },
+      { href: "https://apps.apple.com/jp/app/id6825358586", label: "App Storeで見る", external: true },
       { href: "https://x.com/tokimori_app", label: "Tokimori 公式X", external: true },
     ],
   },
