@@ -25,14 +25,15 @@ footer{margin:48px 0 32px;color:var(--muted);font-size:.85em}
 </style>
 </head>
 <body>
-<header><div class="wrap"><div class="brand">Tokimori</div><h1>サポート</h1><nav aria-label="言語" style="margin-top:12px;font-size:.9em"><span aria-current="page">日本語（1.0）</span> · <a href="support-en.html" lang="en" hreflang="en">English (1.1 preview)</a></nav></div></header>
+<header><div class="wrap"><div class="brand">Tokimori</div><h1>サポート</h1><nav aria-label="言語" style="margin-top:12px;font-size:.9em"><span aria-current="page">日本語（1.1）</span> · <a href="support-en.html" lang="en" hreflang="en">English (1.1)</a></nav></div></header>
 <main class="wrap">
+<p class="muted">Tokimori 1.1の使い方</p>
 <p>Tokimoriは、使ってよいアプリ・サイトだけを残し、決めた時間のあいだそれ以外を制限する集中タイマーです。</p>
 
 <h2>基本の使い方</h2>
 <ol>
 <li>設定タブでスクリーンタイムの利用を許可します。</li>
-<li>集中タブで、制限中も使ってよいアプリ・サイトを選びます。</li>
+<li>ホーム画面で、制限中も使ってよいアプリ・サイトを選びます。</li>
 <li>「今から何分」か「何時まで」で時間を決め、「ロックを開始」を押します。</li>
 </ol>
 
@@ -45,9 +46,21 @@ footer{margin:48px 0 32px;color:var(--muted);font-size:.85em}
 <li>ブラウザを使えるアプリに選んでも、サイトの閲覧には別途そのサイトの許可が必要です。</li>
 </ul>
 
+<h2>曜日と時刻で予約する（1.1）</h2>
+<p>曜日と開始・終了時刻を指定する予約を最大3件作成できます。作成直後はオフです。有効にして保存を確認すると、次回の予定から適用されます。開始する曜日を選び、終了が開始より早い時刻なら翌日までの予約になります。</p>
+<ul>
+<li>予約時間は15分以上24時間未満。有効な予約どうしは同じタイムゾーンで、重ならない必要があります。前の終了と次の開始が同時刻でも設定できます。</li>
+<li>予約は保存されたタイムゾーンを維持します。旅行時や時刻編集時は表示されるタイムゾーンを確認してください。夏時間で存在しない時刻はスキップし、重複する時刻は最初の時刻を使います。対応する時間の条件を満たさない回もスキップします。</li>
+<li>予定の時間帯に入ってから有効化・編集しても、その回をさかのぼって開始せず、次回から適用します。</li>
+<li>手動などのロックが実行中なら重なる予約開始はスキップします。予約を編集・無効化しても、すでに始まったロックは途中解除されません。</li>
+<li>開始にはスクリーンタイムの許可と、無料の残り回数または確認済みで有効期限内のプランが必要です。手動と予約で無料5回を共有します。</li>
+<li>iOSの処理により、予定時刻後にiPhoneを使った際に開始するなど、開始が遅れる場合があります。終了予定は延長しません。対象の時間帯が終了済みなら開始しません。</li>
+<li>購読更新後はアプリを開き、購入状態を更新してください。端末に保存した有効期限が切れ、無料回数もなければ、購入状態を再確認するまで予約は開始しません。</li>
+</ul>
+<p>ホームの次回予定は端末の現在のタイムゾーンで表示します。時刻どおりの開始を保証するものではありません。予約編集画面には予約の保存タイムゾーンを表示します。</p>
 <h2>料金・購入</h2>
 <ul>
-<li>開始に成功したセッションを5回まで無料で試せます。無料体験だけで自動的に課金が始まることはありません。</li>
+<li>開始に成功したセッションを5回まで無料で試せます。手動と予約の開始は同じ回数を使い、失敗した開始や設定変更では消費しません。無料体験だけで自動的に課金が始まることはありません。</li>
 <li>以降は月額または年額の自動更新サブスクリプションです（どちらも同じ機能）。</li>
 <li>解約・変更は、iPhoneの「設定」→ Apple Account →「サブスクリプション」から行えます。アプリを削除しても解約にはなりません。</li>
 <li>機種変更や再インストール後は、設定タブの「購入を復元」をお試しください。</li>
@@ -55,10 +68,11 @@ footer{margin:48px 0 32px;color:var(--muted);font-size:.85em}
 </ul>
 
 <h2>データについて</h2>
+<p>記録はロックの開始・終了に基づく時間で、実際の集中時間や減らした利用時間の測定ではありません。</p>
 <p>設定と記録は端末内に保存します。独自のクラウド同期はなく、アプリを削除すると消えます。iOSのバックアップに含まれる場合はあります。詳しくは<a href="privacy.html">プライバシーポリシー</a>をご覧ください。利用規約は<a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">利用規約（Apple標準）</a>です。</p>
 
 <h2>お問い合わせ</h2>
-<div class="card"><p><a href="mailto:shunei.kanbara@gmail.com">shunei.kanbara@gmail.com</a></p><p class="muted">お問い合わせの際は、iOSのバージョン、Tokimoriのバージョン（設定タブに表示）、起きたことをお知らせください。</p></div>
+<div class="card"><p><a href="mailto:shunei.kanbara@gmail.com">shunei.kanbara@gmail.com</a></p><p class="muted">設定のメール送信からもお問い合わせできます。診断は自動添付されません。送信する内容を確認し、不要な個人情報や認証情報を含めないでください。お問い合わせの際は、iOSのバージョン、Tokimoriのバージョン（設定タブに表示）、起きたことをお知らせください。</p></div>
 </main>
 <footer class="wrap">© Tokimori 菅原駿英</footer>
 </body>
