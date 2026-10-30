@@ -28,7 +28,7 @@ test("features Tokimori first with its published status and local landing page",
   assert.deepEqual([...order].sort((a, b) => a - b), order, "Tokimori is the first case study");
 
   assert.match(html, /App Storeで公開中/);
-  assert.match(html, /日本向け・バージョン1.1/);
+  assert.match(html, /日本語・英語対応・バージョン1.1/);
   assert.match(html, /月額150円・年額1,500円/);
   assert.match(html, /途中解除できない/);
   assert.match(html, /権限取り消し等を防ぐ機能ではなく/);
