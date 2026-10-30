@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { contact, projects, socialChannels, tools, type Project } from "./content";
+import { contact, projects, publicLinkGroups, socialChannels, tools, type Project } from "./content";
 
 const Arrow = () => <span aria-hidden="true">↗</span>;
 const NewTab = () => <span className="sr-only">（新しいタブで開きます）</span>;
@@ -80,13 +80,13 @@ export default function Home() {
         <div className="shell header-inner">
           <Logo />
           <nav className="desktop-nav" aria-label="メインナビゲーション">
-            <a href="#work">実績</a><a href="#updates">更新情報</a>
+            <a href="#work">実績</a><a href="#updates">更新情報</a><a href="#links">リンク集</a>
           </nav>
           <a className="header-cta" href="#contact">相談する <Arrow /></a>
           <details className="mobile-nav">
             <summary><span className="sr-only">メニュー</span><i aria-hidden="true" /><i aria-hidden="true" /></summary>
             <nav aria-label="モバイルナビゲーション">
-              <a href="#work">実績</a><a href="#updates">更新情報</a><a href="#contact">相談する</a>
+              <a href="#work">実績</a><a href="#updates">更新情報</a><a href="#links">リンク集</a><a href="#contact">相談する</a>
             </nav>
           </details>
         </div>
@@ -197,6 +197,24 @@ export default function Home() {
           </div>
         </section>
 
+        <section className="section shell link-hub" id="links" aria-labelledby="links-title">
+          <SectionHead id="links-title" index="03" eyebrow="PUBLIC LINKS" title="公開ページを、ひとまとめに。" text="紹介・使い方・お問い合わせを、ここから。" />
+          <div className="link-hub-grid">
+            {publicLinkGroups.map(group => (
+              <article key={group.title}>
+                <h3>{group.title}</h3>
+                <p>{group.note}</p>
+                <ul>
+                  {group.links.map(link => (
+                    <li key={link.href}><a href={link.href}><span>{link.label}</span><Arrow /></a></li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
+          <p className="link-hub-note">お問い合わせフォームはありません。窓口のメールリンクを押すと、お使いのメールアプリが開きます。</p>
+        </section>
+
         <section className="contact" id="contact" aria-labelledby="contact-title">
           <div className="shell">
             <p className="contact-kicker"><i aria-hidden="true" /> PROJECT INQUIRY · OPEN</p>
@@ -218,7 +236,7 @@ export default function Home() {
         <div className="shell footer-inner">
           <div className="footer-brand"><Logo /><p>現場の課題を、動くプロダクトへ。</p></div>
           <nav className="footer-links" aria-label="フッターナビゲーション">
-            <a href="#work">実績</a><a href="#updates">更新情報</a><a href="#contact">相談する</a><a href="./tokimori/">Tokimori</a>
+            <a href="#work">実績</a><a href="#updates">更新情報</a><a href="#links">リンク集</a><a href="#contact">相談する</a><a href="./tokimori/">Tokimori</a>
           </nav>
           <ul className="footer-social" aria-label="SNS・外部リンク">
             <li><a href={contact.developerX} target="_blank" rel="noreferrer">開発者X<NewTab /> <Arrow /></a></li>

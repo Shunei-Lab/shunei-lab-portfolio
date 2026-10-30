@@ -67,7 +67,7 @@ export const projects: Project[] = [
     role: "企画 / UI設計 / SwiftUI実装 / サポートサイト制作",
     technologies: ["SwiftUI", "iOS", "Interaction Design", "Sound & Motion"],
     links: [
-      { href: "https://shunei-lab.github.io/codex-demo-site/", label: "サポートサイトを見る", external: true },
+      { href: "https://shunei-lab.github.io/codex-demo-site/", label: "旧サポートページ（参考）", external: true },
     ],
   },
   {
@@ -156,4 +156,37 @@ export const faqs = [
   { q: "小さな試作や既存サイトの改善も依頼できますか？", a: "対応できます。全面開発だけでなく、検証用プロトタイプ、UI改善、部分的な業務自動化から始める進め方も歓迎です。" },
   { q: "どこまで担当できますか？", a: "課題整理、情報設計、UI/UX、フロントエンド実装、公開、公開後の改善まで一人で通して対応します。専門領域との連携が必要な場合も、必要な範囲を明確にします。" },
   { q: "相談したらすぐ契約になりますか？", a: "いいえ。まず課題と実現可能性を確認し、進め方が合う場合に次の提案をします。相談段階で無理に依頼を勧めることはありません。" },
+];
+
+export const publicLinkGroups = [
+  {
+    title: "SHUNEI LAB",
+    note: "制作の紹介と、ご相談の窓口。",
+    links: [
+      { href: "#top", label: "ホーム" },
+      { href: "#work", label: "制作したもの" },
+      { href: "#updates", label: "SNS・更新情報" },
+      { href: "#contact", label: "お問い合わせ（メール・X）" },
+    ],
+  },
+  {
+    title: "Tokimori",
+    note: "アプリの紹介・使い方・データの取り扱い。",
+    links: [
+      { href: "./tokimori/", label: "アプリ紹介・料金" },
+      { href: "https://apps.apple.com/app/id6825358586", label: "App Store" },
+      { href: "./timeback/support.html", label: "使い方・お問い合わせ（日本語）" },
+      { href: "./timeback/support-en.html", label: "Support & contact (English)" },
+      { href: "./timeback/privacy.html", label: "プライバシー（日本語）" },
+      { href: "./timeback/privacy-en.html", label: "Privacy (English)" },
+      { href: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/", label: "利用規約（Apple標準）" },
+    ],
+  },
+  {
+    title: "琉生くんのぼうけん",
+    note: "旧ページは連絡先が未設定の参考ページです。お問い合わせはSHUNEI LABへ。",
+    links: [
+      { href: "https://shunei-lab.github.io/codex-demo-site/", label: "旧サポートページ（参考）" },
+    ],
+  },
 ];

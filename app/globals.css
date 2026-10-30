@@ -391,3 +391,15 @@ footer .logo-type small { color: #959a95; }
   *, *:before, *:after { transition: none !important; animation: none !important; }
   .button:hover, .header-cta:hover { transform: none; }
 }
+
+.link-hub .section-head { margin-bottom: 40px; }
+.link-hub-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.link-hub-grid article { border-top: 1px solid var(--line); padding-top: 24px; }
+.link-hub-grid h3 { font-size: 20px; margin: 0 0 12px; }
+.link-hub-grid p, .link-hub-note { color: var(--muted); font-size: 13px; line-height: 1.9; }
+.link-hub-grid ul { list-style: none; padding: 0; margin: 20px 0 0; }
+.link-hub-grid li { border-bottom: 1px solid var(--line); }
+.link-hub-grid a { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 15px 0; min-height: 48px; font-size: 14px; overflow-wrap: anywhere; }
+.link-hub-grid a:hover { color: var(--blue); }
+.link-hub-note { margin-top: 28px; }
+@media (max-width: 980px) { .link-hub-grid { grid-template-columns: 1fr; gap: 36px; } }
