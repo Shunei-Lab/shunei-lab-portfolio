@@ -15,3 +15,5 @@ h1 .product-name { display:block; font:500 13px/1.8 -apple-system,BlinkMacSystem
 html[lang="en"] h1, html[lang="en"] h2 { font-family:Georgia,serif; letter-spacing:-.02em; }
 html[lang="en"] h1 { font-size:clamp(36px,4.5vw,56px); line-height:1.25; }
 @media(max-width:760px){ .header nav>a.language-switch { display:inline-flex; } .header nav .nav-cta { display:none; } h1 .product-name { font-size:11px; } html[lang="en"] h1 { font-size:clamp(34px,9vw,48px); } .faq summary { font-size:14px; } }
+
+.plan-preview{border-left:2px solid var(--gold);padding-left:16px;margin:0 0 28px;font-size:13px}.plan-preview p{margin:0 0 6px;color:var(--text)}.plan-preview a{display:block}.plan-preview strong{display:block;color:var(--gold);font-size:22px;font-weight:500}.plan-preview a span{display:block;margin-top:3px}.plan-preview small{display:block;color:var(--muted);font-size:10px;line-height:1.8;margin-top:7px}
