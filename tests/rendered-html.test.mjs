@@ -105,3 +105,53 @@ test("uses the GitHub Pages base path for generated assets", async () => {
   assert.match(html, /\/shunei-lab-portfolio\/_next\/static\//);
   assert.match(html, /\/shunei-lab-portfolio\/favicon\.png/);
 });
+
+test("exports reciprocal Japanese and English product pages with honest app details", async () => {
+  const base = "https://shunei-lab.github.io/shunei-lab-portfolio/";
+  const pages = [
+    { path: "tokimori/", file: "out/tokimori/index.html", lang: "ja" },
+    { path: "tokimori/en/", file: "out/tokimori/en/index.html", lang: "en" },
+  ];
+  for (const page of pages) {
+    const html = await read(page.file);
+    assert.match(html, new RegExp(`<html lang="${page.lang}">`));
+    assert.equal((html.match(/<h1[ >]/g) || []).length, 1);
+    assert.ok(html.includes(`rel="canonical" href="${base + page.path}"`));
+    for (const alternate of pages) {
+      assert.ok(html.includes(`hreflang="${alternate.lang}" href="${base + alternate.path}"`));
+    }
+    assert.match(html, /name="description" content="[^"]+"/);
+    assert.match(html, /property="og:url"/);
+    assert.doesNotMatch(html, /content="noindex|App Store審査中|This update is not yet released/);
+    const data = JSON.parse(html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1]);
+    assert.equal(data.name, "Tokimori");
+    assert.deepEqual(data.inLanguage, ["ja", "en"]);
+    assert.ok(data.alternateName.includes("ときもり"));
+    assert.equal(data.aggregateRating, undefined, "do not invent reviews for rich results");
+  }
+  const ja = await read(pages[0].file);
+  const en = await read(pages[1].file);
+  assert.match(ja, /スマホ依存/);
+  assert.match(ja, /日本向け価格/);
+  assert.match(en, /phone addiction/);
+  assert.match(en, /five session starts free/);
+  assert.match(en, /Prices and currencies vary/);
+  assert.match(en, /not medical treatment/);
+});
+
+test("includes product and support language pairs in the sitemap", async () => {
+  const sitemap = await read("out/sitemap.xml");
+  const base = "https://shunei-lab.github.io/shunei-lab-portfolio/";
+  for (const kind of ["support", "privacy"]) {
+    for (const [lang, suffix] of [["ja", ""], ["en", "-en"]]) {
+      const path = `timeback/${kind}${suffix}.html`;
+      const html = await read(`out/${path}`);
+      assert.ok(html.includes(`rel="canonical" href="${base + path}"`));
+      assert.ok(html.includes(`hreflang="${lang}" href="${base + path}"`));
+      assert.ok(sitemap.includes(base + path));
+    }
+  }
+  assert.ok(sitemap.includes(base + "tokimori/en/"));
+  assert.match(sitemap, /hreflang="en"/);
+  assert.equal((sitemap.match(/<url>/g) || []).length, 7);
+});

@@ -33,12 +33,12 @@ export const projects: Project[] = [
   {
     slug: "tokimori",
     title: "Tokimori",
-    kana: "トキモリ",
+    kana: "トキモリ／ときもり",
     category: "iPhone app",
     year: "2026",
     status: "App Storeで公開中",
     statusNote: "日本語・英語対応・バージョン1.1",
-    summary: "最低限必要なアプリを残して、決めた時間だけスマホをロックするiPhoneアプリ。",
+    summary: "必要なアプリを残して、決めた時間だけスマホをロック。スマホの使いすぎを見直したい人のためのiPhoneアプリ。",
     challenge: "「少しだけ」のつもりで見続けてしまう時間に、自分で区切りをつくること。ただし連絡など本当に必要なアプリまで止めてしまうと、習慣として続きません。",
     solution: "制限中も使えるアプリを先に選び、「今から何分」か「何時まで」を決めて始める3ステップに絞りました。開始後はアプリ内から途中解除できない設計で、前回の設定は次回もそのまま使えます。",
     current: "App Storeで公開中です。iOS 17以降のiPhoneに対応。無料で5回試せます。",
@@ -50,6 +50,7 @@ export const projects: Project[] = [
     technologies: ["SwiftUI", "Screen Time", "アプリ内課金", "iOS"],
     links: [
       { href: "./tokimori/", label: "Tokimoriの紹介ページを見る" },
+      { href: "./tokimori/en/", label: "Tokimori — English introduction" },
       { href: "https://apps.apple.com/jp/app/id6825358586", label: "App Storeで見る", external: true },
       { href: "https://x.com/tokimori_app", label: "Tokimori 公式X", external: true },
     ],
@@ -173,7 +174,8 @@ export const publicLinkGroups = [
     title: "Tokimori",
     note: "アプリの紹介・使い方・データの取り扱い。",
     links: [
-      { href: "./tokimori/", label: "アプリ紹介・料金" },
+      { href: "./tokimori/", label: "アプリ紹介・料金（日本語）" },
+      { href: "./tokimori/en/", label: "App & plans (English)" },
       { href: "https://apps.apple.com/app/id6825358586", label: "App Store" },
       { href: "./timeback/support.html", label: "使い方・お問い合わせ（日本語）" },
       { href: "./timeback/support-en.html", label: "Support & contact (English)" },

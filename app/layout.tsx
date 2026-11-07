@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 const title = "SHUNEI LAB（駿英ラボ）｜現場課題を解くAI・Web・iPhoneアプリ開発";
-const description = "現場の課題を、動くプロダクトへ。SHUNEI LABは、AI・Webアプリ・iPhoneアプリ・業務効率化を企画、UI/UX、実装、公開まで一貫して支援します。";
+const description = "SHUNEI LAB（駿英ラボ）のアプリ・Web制作紹介。スマホロックアプリTokimori（トキモリ／ときもり）の使い方・日英紹介・サポートと、開発のご相談窓口をまとめています。";
 const assetBase = process.env.GITHUB_ACTIONS === "true" ? "/shunei-lab-portfolio" : "";
 const siteUrl = "https://shunei-lab.github.io/shunei-lab-portfolio/";
 
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   verification: { google: "bTsp_T8y2WjxwLerajOxWB4aQaqSHYz9CQiOwj4upqk" },
   robots: { index: true, follow: true, googleBot: { index: true, follow: true } },
   alternates: { canonical: "/shunei-lab-portfolio/" },
-  openGraph: { title, description, type: "website", locale: "ja_JP", siteName: "SHUNEI LAB", images: [{ url: "/shunei-lab-portfolio/og.png", width: 1200, height: 630, alt: "SHUNEI LAB — 現場の課題を、動くプロダクトへ。" }] },
+  openGraph: { title, description, url: siteUrl, type: "website", locale: "ja_JP", siteName: "SHUNEI LAB", images: [{ url: "/shunei-lab-portfolio/og.png", width: 1200, height: 630, alt: "SHUNEI LAB — 現場の課題を、動くプロダクトへ。" }] },
   twitter: { card: "summary_large_image", title, description, images: ["/shunei-lab-portfolio/og.png"] },
   icons: { icon: `${assetBase}/favicon.png`, shortcut: `${assetBase}/favicon.png`, apple: `${assetBase}/favicon.png` },
 };
