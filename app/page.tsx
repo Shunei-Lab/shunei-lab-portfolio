@@ -128,7 +128,7 @@ export default function Home() {
 
         <section className="section section--ink" id="work" aria-labelledby="work-title">
           <div className="shell">
-            <SectionHead id="work-title" index="01" eyebrow="SELECTED WORK" title="つくったもの、育てているもの。" text="公開中のアプリとWeb、販売準備中のツール。それぞれの紹介へ。" dark />
+            <SectionHead id="work-title" index="01" eyebrow="SELECTED WORK" title="つくったもの。" text="公開中のアプリとWeb、販売準備中のツール。それぞれの紹介へ。" dark />
             <nav className="project-directory" aria-label="制作一覧">
               {projects.map(project => <a href={project.links[0]?.href || `#case-${project.slug}`} key={project.slug}><span>{project.category} · {project.status}</span><strong>{project.title}</strong><small>{project.slug === "portfolio" ? "このサイトの制作紹介へ" : "紹介ページを見る →"}</small></a>)}
             </nav>
