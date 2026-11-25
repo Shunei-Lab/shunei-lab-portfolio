@@ -5,7 +5,7 @@ export type ProjectLink = {
 };
 
 export type Project = {
-  slug: "tokimori" | "rui" | "portfolio";
+  slug: "tokimori" | "rui" | "shift" | "portfolio";
   title: string;
   kana?: string;
   category: string;
@@ -60,16 +60,35 @@ export const projects: Project[] = [
     title: "琉生くんのぼうけん",
     category: "iPhone app",
     year: "2026",
-    status: "開発中・公開準備",
+    status: "App Storeで公開中",
+    statusNote: "無料・iOS 18以降・バージョン1.1",
     summary: "子どもが説明を読まなくても遊べる、親子向けのやさしい恐竜アプリ。",
     challenge: "小さな子どもでも迷わず操作でき、短い時間で何度も楽しめる体験をつくること。",
     solution: "タップだけの操作、はっきりした反応、4種類の恐竜、音と動きを組み合わせ、説明に頼らないUIを設計しました。",
-    current: "アプリ本体、ストア掲載用の素材、サポートサイトを制作し、公開に向けて準備しています。",
+    current: "App Storeで公開中です。4種類の恐竜が登場し、1.1では2匹いっしょに遊べます。",
     role: "企画 / UI設計 / SwiftUI実装 / サポートサイト制作",
     technologies: ["SwiftUI", "iOS", "Interaction Design", "Sound & Motion"],
     links: [
-      { href: "https://shunei-lab.github.io/codex-demo-site/", label: "旧サポートページ（参考）", external: true },
+      { href: "./rui/", label: "琉生くんのぼうけんの紹介ページを見る" },
+      { href: "https://apps.apple.com/jp/app/id6783892991", label: "App Storeで見る", external: true },
     ],
+  },
+  {
+    slug: "shift",
+    title: "休み希望ツール",
+    category: "Web app",
+    year: "2026",
+    status: "販売準備中",
+    statusNote: "紹介ページ公開・価格未定",
+    summary: "希望休と出勤可能日時をスマートフォンから回収。シフトを考える前の準備を、ひとつにまとめる店舗向けツール。",
+    challenge: "紙やメッセージに分散した希望を集め、未提出や締切を確認する手間を減らすこと。",
+    solution: "スタッフの提出と管理者の週一覧を分け、希望休・出勤可能日時、未提出確認、締切設定、代理入力、店舗分離を実装しました。",
+    current: "紹介ページを公開しています。買い切りの利用権販売を検討中で、価格・提供形態・保守条件は未確定です。",
+    role: "要件整理 / UI設計 / Web実装 / 紹介ページ制作",
+    facts: [{ label: "提供条件", value: "価格未定 / サーバー実費・保守は別途確認" }],
+    note: "希望の回収・確認を支援するツールです。シフト自動作成・勤怠管理・給与計算は含みません。掲載画面は架空データの表示例で、実際の提出入口ではありません。",
+    technologies: ["Webアプリ", "レスポンシブUI", "店舗別管理"],
+    links: [{ href: "./shift-requests/", label: "休み希望ツールの紹介ページを見る" }],
   },
   {
     slug: "portfolio",
@@ -185,10 +204,20 @@ export const publicLinkGroups = [
     ],
   },
   {
+    title: "休み希望ツール",
+    note: "希望回収ツールの制作紹介。販売準備中・価格未定。",
+    links: [{ href: "./shift-requests/", label: "機能・導入条件の紹介" }],
+  },
+  {
     title: "琉生くんのぼうけん",
-    note: "旧ページは連絡先が未設定の参考ページです。お問い合わせはSHUNEI LABへ。",
+    note: "タッチで楽しむ恐竜あそび。App Storeで公開中。",
     links: [
-      { href: "https://shunei-lab.github.io/codex-demo-site/", label: "旧サポートページ（参考）" },
+      { href: "./rui/", label: "遊び方・アプリ紹介" },
+      { href: "https://apps.apple.com/jp/app/id6783892991", label: "App Store" },
+      { href: "#contact", label: "お問い合わせ（SHUNEI LAB）" },
     ],
   },
 ];
+
+// Public overview only; private family photo products and unselected concepts are omitted.
+export const upcomingProjects = [{ title: "LINEスタンプ・着せかえ", status: "企画準備中", summary: "日常で使える表現を検討しています。新商品の公開・販売はまだ始めていません。" }];

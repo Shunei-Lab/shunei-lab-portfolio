@@ -3,7 +3,7 @@ export const dynamic = "force-static";
 
 const base = "https://shunei-lab.github.io/shunei-lab-portfolio/";
 // Content revision dates, rather than the time of every unrelated deployment.
-const updated = "2026-11-07";
+const updated = "2026-11-26";
 const pairs = [
   { ja: "tokimori/", en: "tokimori/en/" },
   { ja: "timeback/support.html", en: "timeback/support-en.html" },
@@ -13,6 +13,7 @@ const pairs = [
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     { url: base, lastModified: updated, changeFrequency: "monthly", priority: 1 },
+    ...["rui/", "shift-requests/"].map(path => ({ url: base + path, lastModified: updated, changeFrequency: "monthly" as const, priority: 0.7 })),
     ...pairs.flatMap(pair => [pair.ja, pair.en].map(path => ({
       url: base + path,
       lastModified: updated,

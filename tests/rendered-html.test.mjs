@@ -23,8 +23,8 @@ test("exports the complete SHUNEI LAB sales site", async () => {
 test("features Tokimori first with its published status and local landing page", async () => {
   const html = await read("out/index.html");
   const work = html.slice(html.indexOf('id="work"'));
-  const order = ["case-tokimori", "case-rui", "case-portfolio"].map((id) => work.indexOf(`id="${id}"`));
-  assert.ok(order.every((index) => index > -1), "all three case studies render");
+  const order = ["case-tokimori", "case-rui", "case-shift", "case-portfolio"].map((id) => work.indexOf(`id="${id}"`));
+  assert.ok(order.every((index) => index > -1), "all four case studies render");
   assert.deepEqual([...order].sort((a, b) => a - b), order, "Tokimori is the first case study");
 
   assert.match(html, /App Storeで公開中/);
@@ -42,8 +42,11 @@ test("features Tokimori first with its published status and local landing page",
 test("states honest statuses for the other projects", async () => {
   const html = await read("out/index.html");
   assert.match(html, /琉生くんのぼうけん/);
-  assert.match(html, /開発中・公開準備/);
-  assert.match(html, /https:\/\/shunei-lab\.github\.io\/codex-demo-site\//);
+  assert.match(html, /販売準備中/);
+  assert.match(html, /企画準備中/);
+  assert.match(html, /href="\.\/rui\/"/);
+  assert.match(html, /href="\.\/shift-requests\/"/);
+  assert.doesNotMatch(html, /codex-demo-site|開発中・公開準備/);
   assert.match(html, /\.\/work\/rui\/touch-dino\.jpg/);
   assert.doesNotMatch(html, /LIVE PRODUCT/);
   assert.match(html, /SHUNEI LAB ポートフォリオ/);
@@ -153,5 +156,27 @@ test("includes product and support language pairs in the sitemap", async () => {
   }
   assert.ok(sitemap.includes(base + "tokimori/en/"));
   assert.match(sitemap, /hreflang="en"/);
-  assert.equal((sitemap.match(/<url>/g) || []).length, 7);
+  assert.equal((sitemap.match(/<url>/g) || []).length, 9);
+});
+
+
+test("connects project introductions without exposing operational entry points", async () => {
+  const base = "https://shunei-lab.github.io/shunei-lab-portfolio/";
+  for (const path of ["rui/", "shift-requests/"]) {
+    const html = await read(`out/${path}index.html`);
+    assert.ok(html.includes(`rel="canonical" href="${base + path}"`));
+    assert.equal((html.match(/<h1[ >]/g) || []).length, 1);
+    assert.match(html, /href="\.\.\/#contact"/);
+    assert.doesNotMatch(html, /support@example\.com|pythonanywhere|localhost|127\.0\.0\.1|<form/);
+    for (const [, anchor] of html.matchAll(/href="#([^" ]+)"/g)) {
+      assert.ok(html.includes(`id="${anchor}"`), `missing ${path}#${anchor}`);
+    }
+  }
+  const rui = await read("out/rui/index.html");
+  assert.match(rui, /id6783892991/);
+  assert.match(rui, /iOS 18/);
+  const shift = await read("out/shift-requests/index.html");
+  assert.match(shift, /販売準備中・価格未定/);
+  assert.match(shift, /架空/);
+  assert.match(shift, /このページからの購入やスタッフの希望提出はできません/);
 });

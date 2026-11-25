@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 const title = "SHUNEI LAB（駿英ラボ）｜現場課題を解くAI・Web・iPhoneアプリ開発";
-const description = "SHUNEI LAB（駿英ラボ）のアプリ・Web制作紹介。スマホロックアプリTokimori（トキモリ／ときもり）の使い方・日英紹介・サポートと、開発のご相談窓口をまとめています。";
+const description = "SHUNEI LAB（駿英ラボ）のアプリ・Web制作紹介。Tokimori（トキモリ／ときもり）、琉生くんのぼうけん、休み希望ツールの紹介・公開状況と、開発のご相談窓口をまとめています。";
 const assetBase = process.env.GITHUB_ACTIONS === "true" ? "/shunei-lab-portfolio" : "";
 const siteUrl = "https://shunei-lab.github.io/shunei-lab-portfolio/";
 

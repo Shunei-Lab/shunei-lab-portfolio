@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { contact, projects, publicLinkGroups, socialChannels, tools, type Project } from "./content";
+import { contact, projects, upcomingProjects, publicLinkGroups, socialChannels, tools, type Project } from "./content";
 
 const Arrow = () => <span aria-hidden="true">↗</span>;
 const NewTab = () => <span className="sr-only">（新しいタブで開きます）</span>;
@@ -44,11 +44,14 @@ function CaseVisual({ project }: { project: Project }) {
   if (project.slug === "rui") {
     return (
       <div className="app-stage">
-        <div className="app-stage__copy"><span>IN DEVELOPMENT</span><strong>親子で楽しめる<br />恐竜あそび</strong></div>
+        <div className="app-stage__copy"><span>AVAILABLE ON THE APP STORE</span><strong>親子で楽しめる<br />恐竜あそび</strong></div>
         <figure className="device device--one"><img src="./work/rui/touch-dino.jpg" alt="ティラノサウルスをタップして遊ぶ画面" width="739" height="1600" loading="lazy" /></figure>
         <figure className="device device--two"><img src="./work/rui/rui-adventure.jpg" alt="ブラキオサウルスが表示されたプレイ画面" width="739" height="1600" loading="lazy" /></figure>
       </div>
     );
+  }
+  if (project.slug === "shift") {
+    return <div className="shift-stage"><p>REQUEST COLLECTION</p><strong>休みの希望を、<br />スマホでひとつに。</strong><div className="shift-preview"><span>機能説明用の表示例</span><h4>希望の回収 → 週一覧で確認</h4><ul><li>希望休・出勤可能日時</li><li>未提出の確認・締切設定</li><li>代理入力・店舗分離</li></ul></div><small>販売準備中・価格未定 / 実際の提出入口ではありません</small></div>;
   }
   return (
     <div className="site-stage" role="img" aria-label="このサイトをデスクトップとスマートフォンで表示したイメージ">
@@ -105,7 +108,7 @@ export default function Home() {
           </div>
 
           <aside className="hero-now" aria-labelledby="now-title">
-            <div className="now-top"><h2 id="now-title">NOW</h2><span>2026.10.28 時点</span></div>
+            <div className="now-top"><h2 id="now-title">NOW</h2><span>2026.11.26 時点</span></div>
             <a className="now-feature" href="./tokimori/">
               <img src="./tokimori/assets/icon.png" alt="" width="64" height="64" />
               <span className="now-feature__text">
@@ -125,7 +128,10 @@ export default function Home() {
 
         <section className="section section--ink" id="work" aria-labelledby="work-title">
           <div className="shell">
-            <SectionHead id="work-title" index="01" eyebrow="SELECTED WORK" title="つくっているもの。" text="日々を少し便利に、楽しくするアプリとWeb。" dark />
+            <SectionHead id="work-title" index="01" eyebrow="SELECTED WORK" title="つくったもの、育てているもの。" text="公開中のアプリとWeb、販売準備中のツール。それぞれの紹介へ。" dark />
+            <nav className="project-directory" aria-label="制作一覧">
+              {projects.map(project => <a href={project.links[0]?.href || `#case-${project.slug}`} key={project.slug}><span>{project.category} · {project.status}</span><strong>{project.title}</strong><small>{project.slug === "portfolio" ? "このサイトの制作紹介へ" : "紹介ページを見る →"}</small></a>)}
+            </nav>
             <div className="case-studies">
               {projects.map((project, index) => (
                 <article className={`case-study case-study--${project.slug} ${index % 2 ? "case-study--reverse" : ""}`} id={`case-${project.slug}`} key={project.slug} aria-labelledby={`case-${project.slug}-title`}>
@@ -133,7 +139,7 @@ export default function Home() {
                   <div className="case-body">
                     <div className="case-meta"><span>{String(index + 1).padStart(2, "0")} / {project.category}</span><span>{project.year}</span></div>
                     <h3 id={`case-${project.slug}-title`}>{project.title}{project.kana && <small>{project.kana}</small>}</h3>
-                    <p className="case-status"><span className={`status-badge ${project.slug === "tokimori" ? "status-badge--live" : project.slug === "portfolio" ? "status-badge--live" : "status-badge--dev"}`}>{project.status}</span>{project.statusNote && <small>{project.statusNote}</small>}</p>
+                    <p className="case-status"><span className={`status-badge ${project.slug === "shift" ? "status-badge--dev" : "status-badge--live"}`}>{project.status}</span>{project.statusNote && <small>{project.statusNote}</small>}</p>
                     <p className="case-summary">{project.summary}</p>
                     <dl className="case-details">
                       <div><dt>課題</dt><dd>{project.challenge}</dd></div>
@@ -157,6 +163,7 @@ export default function Home() {
                 </article>
               ))}
             </div>
+            <div className="upcoming-projects"><p className="eyebrow">IN PREPARATION</p>{upcomingProjects.map(project => <article key={project.title}><h3>{project.title}<small>{project.status}</small></h3><p>{project.summary}</p></article>)}</div>
           </div>
         </section>
 
