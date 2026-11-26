@@ -1,0 +1,94 @@
+/* 休み希望ツール（勤務希望ノート）紹介ページ。掲載画像は実UIのJPEGを無加工で表示する。 */
+:root{--green:#143e34;--lime:#dded9b;--paper:#f6f7f2;--ink:#1c332c;--muted:#5b6e65;--line:#dce4dc}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;color:var(--ink);background:var(--paper);line-height:1.8}
+a{color:inherit}
+img{display:block;max-width:100%;height:auto}
+a:focus-visible,summary:focus-visible,.shot-scroll:focus-visible{outline:3px solid #b17b26;outline-offset:4px}
+.wrap{max-width:1120px;margin:auto;padding:0 28px}
+.skip{position:absolute;top:-80px}
+.skip:focus{top:8px;left:8px;background:white;padding:8px;z-index:2}
+.visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.notice{font-size:11px;text-align:center;background:var(--green);color:#eef5e9;padding:7px 16px;letter-spacing:.06em}
+header{background:rgba(246,247,242,.97);border-bottom:1px solid var(--line)}
+header nav{height:72px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{font-size:17px;font-weight:750;text-decoration:none;display:flex;align-items:center;gap:10px}
+.mark{width:28px;height:28px;background:var(--green);color:var(--lime);display:grid;place-items:center;border-radius:8px;font-size:18px}
+.navlinks{display:flex;gap:26px;font-size:13px;align-items:center}
+.navlinks a{text-decoration:none}
+.pill{border:1px solid var(--green);border-radius:999px;padding:8px 17px;font-size:12px}
+.eyebrow{font-size:12px;letter-spacing:.12em;font-weight:650;color:#3b6150}
+h1{font-size:clamp(32px,4.4vw,50px);letter-spacing:-.04em;line-height:1.4;margin:12px 0 16px;font-weight:750}
+h2{font-size:clamp(24px,2.8vw,30px);line-height:1.5;letter-spacing:-.03em;margin:8px 0 14px}
+h3{font-size:17px;margin:0 0 6px}
+.hero{padding-top:52px;padding-bottom:28px}
+.lead{font-size:15px;color:var(--muted);max-width:680px;margin:0}
+.points{list-style:none;display:flex;flex-wrap:wrap;gap:8px;padding:0;margin:20px 0 0}
+.points li{font-size:13px;background:white;border:1px solid var(--line);border-radius:999px;padding:5px 14px}
+.points li:before{content:"✓";color:#3c7b55;margin-right:7px}
+.status{font-size:12px;color:var(--muted);margin:14px 0 0}
+.status b{color:var(--ink)}
+.screens{padding-bottom:56px;position:relative}
+.shot{margin:0;background:white;border:1px solid var(--line);border-radius:14px;padding:14px;box-shadow:0 10px 30px #193c3010}
+.shot-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:6px}
+.shot-scroll img{width:100%;min-width:880px}
+.swipe-hint{display:none;font-size:12px;font-weight:600;color:#3b6150;margin:0 0 8px}
+.shot figcaption,.caption{font-size:12px;color:var(--muted);margin-top:10px}
+.shot-links a{position:relative}
+.shot-links{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:13px;margin-top:6px}
+.section{padding:64px 0;border-top:1px solid var(--line)}
+.intro{color:var(--muted);font-size:14px;max-width:640px;margin:0 0 28px}
+.flow{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
+.flow li{display:flex;flex-direction:column;gap:14px}
+.num{font-size:12px;color:var(--muted);letter-spacing:.1em}
+.flow p{font-size:13px;color:var(--muted);margin:0}
+.phone-shot{position:relative;display:block;width:300px;max-width:100%;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:white;text-decoration:none}
+.phone-shot+small{font-size:11px;color:var(--muted)}
+.sub{font-size:13px;color:var(--muted);margin:28px 0 0;padding-top:16px;border-top:1px dashed #c7d3c7}
+.plan{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.plan article{background:white;border:1px solid var(--line);border-radius:12px;padding:24px}
+.plan p{font-size:13px;color:var(--muted);margin:0 0 8px}
+.plan p:last-child{margin-bottom:0}
+.plan .strong{font-size:15px;color:var(--ink);font-weight:600}
+.faq{max-width:790px}
+details{border-bottom:1px solid #ccd8cc;padding:16px 0}
+summary{font-size:14px;cursor:pointer;display:flex;justify-content:space-between;gap:16px;list-style:none;font-weight:600}
+summary::-webkit-details-marker{display:none}
+summary:after{content:"＋";font-size:18px;font-weight:400}
+details[open] summary:after{content:"−"}
+details p{font-size:13px;color:var(--muted);margin:10px 0 0;padding-right:25px}
+.closing{background:#e8eedf;padding:32px;border-radius:14px;display:flex;justify-content:space-between;align-items:center;gap:28px;margin-bottom:56px}
+.closing h2{margin-top:0}
+.closing p{font-size:13px;color:var(--muted);margin:0}
+.btns{display:flex;flex-wrap:wrap;gap:10px;flex-shrink:0}
+.btn{display:inline-flex;align-items:center;gap:12px;min-height:44px;background:var(--green);color:white;text-decoration:none;border-radius:8px;padding:11px 20px;font-weight:600;font-size:14px}
+.btn.light{background:white;color:var(--green);border:1px solid var(--green)}
+footer{padding:0 0 28px;font-size:11px;color:var(--muted)}
+footer p{margin:6px 0}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+/* 一覧画像が枠より広くなり横スクロールが生じる幅だけ案内を出す */
+@media(max-width:940px){.swipe-hint{display:block}}
+@media(max-width:760px){
+  .wrap{padding:0 18px}
+  header nav{height:62px}
+  .brand{font-size:15px}
+  .navlinks>a:not(.pill){display:none}
+  .navlinks .pill{padding:7px 12px;font-size:11px}
+  .hero{padding-top:32px;padding-bottom:22px}
+  .lead{font-size:14px}
+  .shot{padding:10px;border-radius:12px}
+  .section{padding:44px 0}
+  .flow{grid-template-columns:1fr;gap:36px}
+  .phone-shot{margin:0 auto}
+  .phone-shot+small{text-align:center}
+  .plan{grid-template-columns:1fr}
+  .plan article{padding:20px}
+  .closing{display:block;padding:22px}
+  .btns{margin-top:18px}
+}
+
+.mobile-break{display:none}
+@media(max-width:760px){.mobile-break{display:block}h1{font-size:clamp(30px,8vw,36px)}}
+
+.shot-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px}.shot-toolbar .swipe-hint{margin:0}.shot-toolbar .shot-links{margin:0 0 0 auto}.shot-toolbar .shot-links a{display:inline-flex;align-items:center;min-height:44px;padding:0 12px;border:1px solid var(--line);border-radius:999px;text-decoration:none;color:var(--green);font-weight:600}

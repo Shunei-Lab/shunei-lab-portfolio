@@ -216,3 +216,63 @@ test("connects project introductions without exposing operational entry points",
   assert.match(shift, /架空/);
   assert.match(shift, /このページからの購入やスタッフの希望提出はできません/);
 });
+
+test("gives every product, support and privacy page a fixed top link back to SHUNEI LAB", async () => {
+  const css = await read("public/lab-navigation.css");
+  assert.match(css, /\.lab-backbar\{[^}]*position:sticky;top:0/);
+  assert.match(css, /min-height:44px/);
+  assert.match(css, /safe-area-inset-top/);
+  assert.match(css, /:focus-visible/);
+  const pages = [
+    ["tokimori/index.html", "dark", "駿英LABへ戻る"],
+    ["tokimori/en/index.html", "dark", "Back to SHUNEI LAB"],
+    ["rui/index.html", "light", "駿英LABへ戻る"],
+    ["shift-requests/index.html", "light", "駿英LABへ戻る"],
+    ["timeback/support.html", "dark", "駿英LABへ戻る"],
+    ["timeback/privacy.html", "dark", "駿英LABへ戻る"],
+    ["timeback/support-en.html", "dark", "Back to SHUNEI LAB"],
+    ["timeback/privacy-en.html", "dark", "Back to SHUNEI LAB"],
+  ];
+  for (const [path, theme, label] of pages) {
+    const html = await read(`public/${path}`);
+    assert.match(html, /<meta name="viewport" content="[^"]*viewport-fit=cover"/, `${path} viewport-fit`);
+    assert.ok(html.includes('<link rel="stylesheet" href="/shunei-lab-portfolio/lab-navigation.css?v=20261126">'), `${path} loads shared CSS`);
+    const body = html.slice(html.indexOf("<body"));
+    const bar = body.match(/<nav class="lab-backbar lab-backbar--(\w+)"[^>]*><a class="lab-backbar__link" href="([^"]+)">([\s\S]*?)<\/a><\/nav>/);
+    assert.ok(bar, `${path} has the back bar`);
+    assert.equal(bar[1], theme, `${path} theme`);
+    assert.equal(bar[2], "/shunei-lab-portfolio/", `${path} fixed href`);
+    assert.ok(bar[3].endsWith(label), `${path} label`);
+    assert.ok(body.indexOf(bar[0]) < body.search(/<header|<main/), `${path} bar sits above the page header`);
+    assert.equal((html.match(/class="lab-backbar /g) || []).length, 1, `${path} has a single back bar`);
+    assert.doesNotMatch(html, /history\.back|document\.referrer/);
+  }
+});
+
+test("introduces the shift tool with real fictional-data screenshots and a consistent LAB message", async () => {
+  const caption = "実際の画面を使用しています。氏名・番号・希望内容はすべて架空の表示例です。";
+  const lp = await read("out/shift-requests/index.html");
+  assert.equal(lp.match(/<h1>([\s\S]*?)<\/h1>/)[1].replace(/<[^>]*>/g, ""), "休み希望を集めて、一覧で確認。");
+  assert.ok(lp.includes(caption));
+  assert.match(lp, /src="assets\/admin-week-overview\.jpg" width="1120" height="600" loading="eager"/);
+  assert.match(lp, /href="assets\/admin-week-full\.jpg" target="_blank" rel="noopener"/);
+  for (const shot of ["employee-calendar-selected-mobile", "admin-week-mobile", "admin-detail-mobile"]) {
+    assert.ok(lp.includes(`href="assets/${shot}.jpg" target="_blank" rel="noopener"><img src="assets/${shot}.jpg" width="390" height="844" loading="lazy" decoding="async" alt="`), shot);
+  }
+  for (const shot of ["admin-week-overview", "admin-week-full", "employee-calendar-selected-mobile", "admin-week-mobile", "admin-detail-mobile"]) {
+    assert.ok((await stat(new URL(`out/shift-requests/assets/${shot}.jpg`, root))).size > 10_000, `${shot} is exported`);
+  }
+  assert.match(lp, /アプリのインストール不要/);
+  assert.match(lp, /別途お見積もり/);
+  assert.doesNotMatch(lp, /登録不要|<script|data-filter|class="phone"/);
+  const top = await read("out/index.html");
+  const shift = top.slice(top.indexOf('id="case-shift"'), top.indexOf('id="case-portfolio"'));
+  assert.match(shift, /href="\.\/shift-requests\/#screens"/);
+  assert.match(shift, /src="\.\/shift-requests\/assets\/admin-week-overview\.jpg"/);
+  assert.ok(shift.includes(caption));
+  assert.match(shift, /従業員ごと・週ごと/);
+  assert.match(shift, /インストール/);
+  assert.match(shift, /別途見積/);
+  assert.match(shift, /販売準備中/);
+  assert.doesNotMatch(shift, /登録不要|shift-preview/);
+});

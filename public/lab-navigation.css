@@ -1,0 +1,35 @@
+/* SHUNEI LAB 共通の戻りバー。各LP・support/privacyの <body> 先頭（skip リンク直後）に置く。
+   <nav class="lab-backbar lab-backbar--dark|--light" aria-label="..."><a class="lab-backbar__link" href="/shunei-lab-portfolio/">...</a></nav>
+   ページ側の nav/a 要素セレクタに負けないよう、クラスで必要な値を明示する。 */
+.lab-backbar{
+  --lab-backbar-bg:rgba(10,18,29,.94);
+  --lab-backbar-fg:#D7BA80;
+  --lab-backbar-line:rgba(215,186,128,.25);
+  --lab-backbar-focus:#D7BA80;
+  position:sticky;top:0;z-index:1000;
+  box-sizing:border-box;display:flex;align-items:center;justify-content:flex-start;gap:0;
+  width:100%;max-width:none;height:auto;min-height:0;margin:0;
+  padding:env(safe-area-inset-top,0px) max(12px,env(safe-area-inset-right,0px)) 0 max(12px,env(safe-area-inset-left,0px));
+  background:var(--lab-backbar-bg);border-bottom:1px solid var(--lab-backbar-line);
+  -webkit-backdrop-filter:saturate(1.4) blur(10px);backdrop-filter:saturate(1.4) blur(10px);
+  font:600 13px/1.2 -apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;
+  letter-spacing:.04em;
+}
+.lab-backbar--light{
+  --lab-backbar-bg:rgba(250,250,244,.94);
+  --lab-backbar-fg:#183d34;
+  --lab-backbar-line:rgba(24,61,52,.14);
+  --lab-backbar-focus:#a87713;
+}
+.lab-backbar .lab-backbar__link{
+  box-sizing:border-box;display:inline-flex;align-items:center;gap:6px;
+  min-height:44px;max-width:100%;padding:0 6px;margin:0;
+  color:var(--lab-backbar-fg);text-decoration:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  border-radius:6px;-webkit-tap-highlight-color:transparent;
+}
+.lab-backbar .lab-backbar__link:hover{text-decoration:underline;text-underline-offset:3px;color:var(--lab-backbar-fg)}
+.lab-backbar .lab-backbar__link:focus-visible{outline:2px solid var(--lab-backbar-focus);outline-offset:-2px}
+/* 既存の skip リンクがフォーカス時にバーの下へ隠れないようにする */
+body>a.skip:focus{z-index:1001;top:max(8px,env(safe-area-inset-top,0px));left:max(12px,env(safe-area-inset-left,0px))}
+/* アンカー移動時に見出しがバーの下に潜らないよう余白を確保する */
+html:has(.lab-backbar){scroll-padding-top:calc(44px + env(safe-area-inset-top,0px) + 24px)}

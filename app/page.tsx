@@ -51,7 +51,15 @@ function CaseVisual({ project }: { project: Project }) {
     );
   }
   if (project.slug === "shift") {
-    return <div className="shift-stage"><p>REQUEST COLLECTION</p><strong>休みの希望を、<br />スマホでひとつに。</strong><div className="shift-preview"><span>機能説明用の表示例</span><h4>希望の回収 → 週一覧で確認</h4><ul><li>希望休・出勤可能日時</li><li>未提出の確認・締切設定</li><li>代理入力・店舗分離</li></ul></div><small>販売準備中・価格未定 / 実際の提出入口ではありません</small></div>;
+    return (
+      <div className="shift-stage">
+        <div className="shift-stage__copy"><span>勤務希望ノート</span><strong>休み希望を集めて、<br />一覧で確認。</strong></div>
+        <a className="shift-shot" href="./shift-requests/#screens">
+          <img src="./shift-requests/assets/admin-week-overview.jpg" alt="勤務希望ノートの管理者画面。11月23日から29日までの休み希望を、従業員ごと・週ごとの一覧で表示している。氏名・番号は架空。" width="1120" height="600" loading="lazy" decoding="async" />
+        </a>
+        <small>実際の画面を使用しています。氏名・番号・希望内容はすべて架空の表示例です。</small>
+      </div>
+    );
   }
   return (
     <div className="site-stage" role="img" aria-label="このサイトをデスクトップとスマートフォンで表示したイメージ">
