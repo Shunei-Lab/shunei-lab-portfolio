@@ -142,6 +142,42 @@ test("exports reciprocal Japanese and English product pages with honest app deta
   assert.match(en, /not medical treatment/);
 });
 
+test("shows five full-size screenshots with light previews on each language page", async () => {
+  const pngSize = (buffer) => [buffer.readUInt32BE(16), buffer.readUInt32BE(20)];
+  const jpegSize = (buffer) => {
+    for (let offset = 2; offset < buffer.length;) {
+      const marker = buffer[offset + 1];
+      if (marker >= 0xc0 && marker <= 0xc3) return [buffer.readUInt16BE(offset + 7), buffer.readUInt16BE(offset + 5)];
+      offset += 2 + buffer.readUInt16BE(offset + 2);
+    }
+  };
+  const shots = ["01-cover", "02-allowed", "03-duration", "04-active", "05-history"];
+  for (const [file, lang, prefix] of [["out/tokimori/index.html", "ja", "assets/gallery/ja/"], ["out/tokimori/en/index.html", "en", "../assets/gallery/en/"]]) {
+    const html = await read(file);
+    assert.match(html, /href="#screenshots"/);
+    const gallery = html.slice(html.indexOf('id="screenshots"'), html.indexOf('id="how"'));
+    assert.match(gallery, /role="region" aria-label="[^"]+" aria-describedby="screenshots-hint"/);
+    assert.equal((gallery.match(/<li>/g) || []).length, 5);
+    for (const shot of shots) {
+      const link = `href="${prefix}${shot}.png" target="_blank" rel="noopener"`;
+      assert.ok(gallery.includes(link), `${lang} links to full-size ${shot}`);
+      assert.ok(gallery.includes(`src="${prefix}${shot}-630.jpg" width="630" height="1368" loading="lazy" decoding="async" alt="`), `${lang} preview ${shot}`);
+      const dir = `out/tokimori/assets/gallery/${lang}/`;
+      const [full, preview] = await Promise.all([readFile(new URL(`${dir}${shot}.png`, root)), readFile(new URL(`${dir}${shot}-630.jpg`, root))]);
+      assert.deepEqual(pngSize(full), [1260, 2736]);
+      assert.deepEqual(jpegSize(preview), [630, 1368]);
+      assert.ok(preview.length < 200_000 && preview.length < full.length / 3, `${lang} ${shot} preview is lightweight`);
+    }
+    assert.equal((gallery.match(/class="visually-hidden"/g) || []).length, 5, "new-tab notice for each image");
+  }
+  const ja = await read("out/tokimori/index.html");
+  const en = await read("out/tokimori/en/index.html");
+  assert.match(ja, /積み重ねが、目に見える。/);
+  assert.match(en, /See your time add up\./);
+  const top = await read("out/index.html");
+  assert.match(top, /href="\.\/tokimori\/#screenshots"[^>]*>5枚で見る機能紹介/);
+});
+
 test("includes product and support language pairs in the sitemap", async () => {
   const sitemap = await read("out/sitemap.xml");
   const base = "https://shunei-lab.github.io/shunei-lab-portfolio/";

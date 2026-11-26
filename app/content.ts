@@ -50,6 +50,7 @@ export const projects: Project[] = [
     technologies: ["SwiftUI", "Screen Time", "アプリ内課金", "iOS"],
     links: [
       { href: "./tokimori/", label: "Tokimoriの紹介ページを見る" },
+      { href: "./tokimori/#screenshots", label: "5枚で見る機能紹介" },
       { href: "./tokimori/en/", label: "Tokimori — English introduction" },
       { href: "https://apps.apple.com/jp/app/id6825358586", label: "App Storeで見る", external: true },
       { href: "https://x.com/tokimori_app", label: "Tokimori 公式X", external: true },
